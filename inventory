@@ -1,0 +1,12 @@
+[gluster]
+swarm-master
+swarm-node01
+swarm-node02
+
+
+[gluster:vars]
+ansible_ssh_user=root
+ansible_python_interpreter=/usr/bin/python2
+glusterfs_brick_path=/vol/brick
+glusterfs_mount_path=/data
+glusterfs_vol_name=samba
