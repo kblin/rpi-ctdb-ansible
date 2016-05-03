@@ -1,0 +1,26 @@
+---
+- hosts: gluster
+  tasks:
+    - name: Install git
+      pacman: name=git state=present
+      tags: packages
+
+    - name: Grab the Samba git repository
+      git:
+        repo: git://git.samba.org/samba.git
+        dest: /data/samba
+        version: samba-4.4.2
+      run_once: yes
+      tags: sources
+
+    - name: Set up smb.conf
+      copy: src=smb.conf dest=/etc/samba/smb.conf
+      tags: conf
+
+    - name: Make sure smbpasswd directory exists
+      file: path=/var/lib/samba/private state=directory mode=0700
+      tags: paths
+
+    - name: Make sure secrets.tdb exists
+      file: path=/var/lib/samba/private/secrets.tdb state=touch mode=0600
+      tags: paths
