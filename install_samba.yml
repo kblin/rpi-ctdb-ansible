@@ -5,14 +5,6 @@
       pacman: name=git state=present
       tags: packages
 
-    - name: Grab the Samba git repository
-      git:
-        repo: git://git.samba.org/samba.git
-        dest: /data/samba
-        version: samba-4.4.2
-      run_once: yes
-      tags: sources
-
     - name: Set up smb.conf
       copy: src=smb.conf dest=/etc/samba/smb.conf
       tags: conf
@@ -21,6 +13,19 @@
       file: path=/var/lib/samba/private state=directory mode=0700
       tags: paths
 
-    - name: Make sure secrets.tdb exists
-      file: path=/var/lib/samba/private/secrets.tdb state=touch mode=0600
+    - name: Copy over the ctdb directory
+      copy: src=ctdb dest=/etc
+      tags: conf
+
+    - name: Make sure sysconfig directory exists
+      file: path=/etc/sysconfig state=directory
       tags: paths
+
+    - name: Copy over the sysconfig file
+      copy: src=ctdb.sysconfig dest=/etc/sysconfig/ctdb
+      tags: conf
+
+    - name: Copy the systemctl file for ctdb
+      copy: src=ctdb.service dest=/usr/lib/systemd/system/
+      tags: conf
+
