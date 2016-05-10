@@ -5,6 +5,10 @@
       pacman: name=git state=present
       tags: packages
 
+    - name: Install ethtool
+      pacman: name=ethtool state=present
+      tags: packages
+
     - name: Set up smb.conf
       copy: src=smb.conf dest=/etc/samba/smb.conf
       tags: conf
