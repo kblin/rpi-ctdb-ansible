@@ -18,7 +18,10 @@
       tags: paths
 
     - name: Copy over the ctdb directory
-      copy: src=ctdb dest=/etc
+      copy: src=ctdb dest={{item}}
+      with_items:
+          - /etc
+          - /usr/etc
       tags: conf
 
     - name: Make sure sysconfig directory exists
