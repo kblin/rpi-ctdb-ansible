@@ -39,3 +39,7 @@
     - name: Roll out fixed ctdbd_wrapper script
       copy: src=ctdbd_wrapper dest=/usr/bin/ctdbd_wrapper mode=0755
       tags: paths
+
+    - name: Enable and start ctdb.service
+      service: name=ctdb.service state=started enabled=yes
+      tags: service
