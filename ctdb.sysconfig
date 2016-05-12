@@ -6,7 +6,7 @@
 #
 # Do NOT run CTDB without a recovery lock file unless you know exactly
 # what you are doing.
-CTDB_RECOVERY_LOCK=/data/ctdb/recovery.lock
+#CTDB_RECOVERY_LOCK=/data/ctdb/recovery.lock
 
 # List of nodes in the cluster.  Default is below.
 CTDB_NODES=/etc/ctdb/nodes
@@ -18,6 +18,9 @@ CTDB_PUBLIC_ADDRESSES=/etc/ctdb/public_addresses
 CTDB_MANAGES_SAMBA=yes
 CTDB_MANAGES_WINBIND=yes
 # CTDB_MANAGES_NFS=yes
+
+CTDB_SERVICE_SMB=smbd
+CTDB_SERVICE_NMB=nmbd
 
 # Raise the file descriptor limit for CTDB?
 # CTDB_MAX_OPEN_FILES=10000
